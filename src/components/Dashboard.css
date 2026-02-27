@@ -4,7 +4,7 @@
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-6);
     padding: var(--space-6);
 }
@@ -24,7 +24,7 @@
 }
 
 .metric-value {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     letter-spacing: -0.02em;
     color: var(--text-primary);
     line-height: 1.1;
@@ -56,6 +56,10 @@
     margin-bottom: var(--space-6);
 }
 
+.mb-8 {
+    margin-bottom: var(--space-8);
+}
+
 .ml-2 {
     margin-left: var(--space-2);
 }
@@ -63,7 +67,7 @@
 /* --- Pie Charts Grid --- */
 .pie-charts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
     margin-bottom: var(--space-8);
 }
@@ -76,7 +80,7 @@
 }
 
 .chart-title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: var(--space-2);
@@ -86,7 +90,6 @@
 .chart-container {
     width: 100%;
     height: 300px;
-    /* Increased height so legends don't overflow */
     position: relative;
 }
 
@@ -97,6 +100,7 @@
     transform: translate(-50%, -50%);
     color: var(--text-tertiary);
     font-style: italic;
+    text-align: center;
 }
 
 /* Custom Recharts Tooltip */
@@ -133,16 +137,17 @@
     margin-bottom: 4px !important;
 }
 
-/* --- Historical Line / Area Chart --- */
+/* --- Historical Area Chart --- */
 .historical-chart-card {
     padding: var(--space-6);
     width: 100%;
     margin-bottom: var(--space-8);
+    box-sizing: border-box;
 }
 
 .historical-chart-container {
     width: 100%;
-    height: 350px;
+    height: 300px;
     position: relative;
 }
 
@@ -168,4 +173,48 @@
 
 .align-center {
     align-items: center;
+}
+
+/* ─── Tablet / Mobile ─── */
+@media (max-width: 900px) {
+    .pie-charts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        padding: var(--space-4);
+    }
+
+    .metric-value {
+        font-size: 1.8rem;
+    }
+
+    .pie-charts-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .chart-container {
+        height: 260px;
+    }
+
+    .historical-chart-container {
+        height: 220px;
+    }
+
+    .historical-chart-card {
+        padding: var(--space-4);
+    }
+
+    .pie-card {
+        padding: var(--space-4);
+    }
+
+    .chart-title {
+        font-size: 0.95rem;
+    }
 }

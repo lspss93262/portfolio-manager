@@ -13,24 +13,11 @@
     padding: var(--space-4);
 }
 
-.right-align {
-    text-align: right;
-    justify-content: flex-end;
-}
-
-.center-align {
-    text-align: center;
-    justify-content: center;
-}
-
-.font-bold {
-    font-weight: 700;
-}
-
+/* --- Controls Panel --- */
 .matrix-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-6);
+    gap: var(--space-4);
     padding: var(--space-4);
     align-items: center;
 }
@@ -39,6 +26,8 @@
     display: flex;
     gap: var(--space-2);
     align-items: center;
+    flex: 1;
+    min-width: 220px;
 }
 
 .matrix-input {
@@ -50,6 +39,9 @@
     font-family: inherit;
     font-size: 0.875rem;
     transition: border-color var(--transition-fast);
+    flex: 1;
+    min-width: 0;
+    color-scheme: dark;
 }
 
 .matrix-input:focus {
@@ -60,6 +52,8 @@
 .btn-secondary.small {
     padding: var(--space-2) var(--space-4);
     font-size: 0.875rem;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* --- SUPER MATRIX LAYOUT --- */
@@ -71,12 +65,13 @@
     overflow-x: auto;
     overflow-y: hidden;
     max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    /* smooth iOS scroll */
 }
 
 .asset-matrix {
     width: 100%;
     border-collapse: separate;
-    /* Required for sticky cols to work properly with borders */
     border-spacing: 0;
     text-align: left;
 }
@@ -93,7 +88,7 @@
     border-right: 2px solid var(--border-strong) !important;
 }
 
-/* Sticky First 3 Columns (Name, Type, Category) */
+/* Sticky First 3 Columns */
 .sticky-col {
     position: sticky;
     z-index: 2;
@@ -102,22 +97,20 @@
 
 .sticky-col:nth-child(1) {
     left: 0;
-    min-width: 200px;
+    min-width: 160px;
     z-index: 3;
 }
 
-/* Highest z-index for corners */
 .left-offset-1 {
-    left: 200px;
-    min-width: 140px;
+    left: 160px;
+    min-width: 110px;
 }
 
 .left-offset-2 {
-    left: 340px;
-    min-width: 160px;
+    left: 270px;
+    min-width: 120px;
 }
 
-/* Sticky Depth Shadow */
 .left-offset-2::after {
     content: '';
     position: absolute;
@@ -126,7 +119,7 @@
     bottom: 0;
     width: 10px;
     transform: translateX(100%);
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 100%);
     pointer-events: none;
 }
 
@@ -136,7 +129,7 @@
     background-color: var(--bg-elevated);
     padding: var(--space-3) var(--space-4);
     color: var(--text-secondary);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -151,10 +144,8 @@
 .property-col {
     background-color: var(--bg-surface);
     z-index: 4;
-    /* Stay above scrolling body rows */
 }
 
-/* Ensure sticky headers stay above scrolling content */
 thead .sticky-col {
     z-index: 5;
 }
@@ -174,7 +165,7 @@ thead .sticky-col {
 .property-cell {
     background-color: transparent;
     transition: background-color var(--transition-fast);
-    min-width: 120px;
+    min-width: 110px;
 }
 
 .matrix-row:hover .matrix-cell,
@@ -186,7 +177,7 @@ thead .sticky-col {
 .row-header-content {
     display: flex;
     align-items: center;
-    padding: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-3);
     width: 100%;
     height: 100%;
 }
@@ -199,6 +190,7 @@ thead .sticky-col {
     color: var(--text-tertiary);
     margin-right: var(--space-1);
     font-size: 0.875rem;
+    flex-shrink: 0;
 }
 
 .cell-input {
@@ -206,7 +198,7 @@ thead .sticky-col {
     border: none;
     color: var(--text-primary);
     font-family: inherit;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     width: 100%;
     outline: none;
     font-variant-numeric: tabular-nums;
@@ -225,7 +217,7 @@ thead .sticky-col {
     color: var(--border-strong);
 }
 
-/* Remove number arrows */
+/* Remove number spinners */
 .cell-input::-webkit-outer-spin-button,
 .cell-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -237,7 +229,7 @@ thead .sticky-col {
     appearance: textfield;
 }
 
-/* Micro buttons */
+/* Touch-friendly delete icons */
 .btn-icon-micro {
     background: transparent;
     border: none;
@@ -246,22 +238,74 @@ thead .sticky-col {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    font-size: 1.1rem;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    font-size: 1.2rem;
     line-height: 1;
     padding: 0;
     opacity: 0;
     transition: all var(--transition-fast);
+    flex-shrink: 0;
 }
 
 .group-header:hover .btn-icon-micro,
-.row-header-content:hover .btn-icon-micro {
-    opacity: 1;
+.row-header-content:hover .btn-icon-micro,
+/* Always show on touch devices */
+@media (hover: none) {
+    .btn-icon-micro {
+        opacity: 0.6;
+    }
 }
 
 .btn-icon-micro:hover {
     background-color: var(--accent-danger-dim);
     color: var(--accent-danger);
+    opacity: 1;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+    .matrix-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-group {
+        min-width: unset;
+    }
+
+    .btn-icon-micro {
+        opacity: 0.7;
+    }
+
+    .sticky-col:nth-child(1) {
+        min-width: 120px;
+    }
+
+    .left-offset-1 {
+        left: 120px;
+        min-width: 90px;
+    }
+
+    .left-offset-2 {
+        left: 210px;
+        min-width: 100px;
+    }
+
+    .header-cell,
+    .sub-header-cell {
+        font-size: 0.65rem;
+        padding: var(--space-2) var(--space-2);
+    }
+
+    .cell-input {
+        font-size: 0.8rem;
+    }
+
+    .cell-input-wrapper,
+    .row-header-content {
+        padding: var(--space-2) var(--space-2);
+    }
 }

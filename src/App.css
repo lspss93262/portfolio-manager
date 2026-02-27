@@ -1,9 +1,10 @@
-/* We can keep this empty initially or add high-level app layout styles here */
+/* App.css — layout + nav */
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-4) var(--space-6);
   width: 100%;
+  box-sizing: border-box;
 }
 
 .app-header {
@@ -13,6 +14,8 @@
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .app-brand {
@@ -22,11 +25,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
 .nav-menu {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-1);
   background: var(--bg-surface);
   padding: var(--space-1);
   border-radius: var(--radius-lg);
@@ -39,7 +43,9 @@
   padding: var(--space-2) var(--space-6);
   border-radius: var(--radius-md);
   font-weight: 500;
+  font-size: 0.9rem;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .nav-item:hover {
@@ -76,4 +82,29 @@
 
 .slide-up {
   animation: slideUp var(--transition-normal);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .app-container {
+    padding: var(--space-3) var(--space-3);
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .nav-menu {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .nav-item {
+    flex: 1;
+    text-align: center;
+    padding: var(--space-3) var(--space-2);
+    font-size: 0.85rem;
+  }
 }
