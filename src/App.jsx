@@ -4,7 +4,10 @@ import Dashboard from './components/Dashboard';
 import AssetList from './components/AssetList';
 import { db, auth, googleProvider } from './firebase';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
-import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth';
+
+// Detect mobile browsers — they block popups, so we use redirect instead
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 const INITIAL_PORTFOLIO = [
   {
@@ -45,6 +48,11 @@ function App() {
   const [portfolio, setPortfolio] = useState(null); // null = loading data
   const [synced, setSynced] = useState(false);
   const isRemoteUpdate = useRef(false);
+
+  // ── Handle redirect result (mobile sign-in lands back here) ──
+  useEffect(() => {
+    getRedirectResult(auth).catch(console.error);
+  }, []);
 
   // ── Listen for auth state changes ──
   useEffect(() => {
@@ -94,7 +102,13 @@ function App() {
     localStorage.setItem('portfolio_data_v4', JSON.stringify(portfolio));
   }, [portfolio, user]);
 
-  const handleSignIn = () => signInWithPopup(auth, googleProvider).catch(console.error);
+  const handleSignIn = () => {
+    if (isMobile) {
+      signInWithRedirect(auth, googleProvider).catch(console.error);
+    } else {
+      signInWithPopup(auth, googleProvider).catch(console.error);
+    }
+  };
   const handleSignOut = () => signOut(auth);
 
   const allDates = portfolio
