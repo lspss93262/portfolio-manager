@@ -1,0 +1,171 @@
+.dashboard {
+    animation: slideUp var(--transition-normal);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    padding: var(--space-6);
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.metric-value-sub {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.mt-4 {
+    margin-top: var(--space-4);
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4);
+}
+
+.mb-6 {
+    margin-bottom: var(--space-6);
+}
+
+.ml-2 {
+    margin-left: var(--space-2);
+}
+
+/* --- Pie Charts Grid --- */
+.pie-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.pie-card {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+    text-align: center;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    /* Increased height so legends don't overflow */
+    position: relative;
+}
+
+.empty-chart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-tertiary);
+    font-style: italic;
+}
+
+/* Custom Recharts Tooltip */
+.custom-tooltip {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.tooltip-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-1);
+}
+
+.tooltip-value {
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Recharts overrides */
+.recharts-wrapper {
+    font-family: inherit;
+}
+
+.recharts-legend-item-text {
+    color: var(--text-secondary) !important;
+}
+
+.recharts-legend-item {
+    margin-bottom: 4px !important;
+}
+
+/* --- Historical Line / Area Chart --- */
+.historical-chart-card {
+    padding: var(--space-6);
+    width: 100%;
+    margin-bottom: var(--space-8);
+}
+
+.historical-chart-container {
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.flex {
+    display: flex;
+}
+
+.gap-2 {
+    gap: var(--space-2);
+}
+
+.mb-1 {
+    margin-bottom: var(--space-1);
+}
+
+.mb-2 {
+    margin-bottom: var(--space-2);
+}
+
+.align-center {
+    align-items: center;
+}

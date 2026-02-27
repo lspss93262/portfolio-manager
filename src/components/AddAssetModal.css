@@ -1,0 +1,166 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 17, 21, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn var(--transition-normal);
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--space-6);
+    background: var(--bg-surface);
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.btn-close {
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.btn-close:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+
+.add-asset-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    background: var(--bg-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.form-group input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background: var(--accent-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-strong);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-up {
+    animation: slideUp var(--transition-normal);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
